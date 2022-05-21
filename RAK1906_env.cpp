@@ -45,16 +45,6 @@ bool init_rak1906(void)
 }
 
 /**
- * @brief Start sensing on the BME6860
- *
- */
-// void start_rak1906(void)
-// {
-// 	// MYLOG("BME", "Start BME measuring");
-// 	bme.beginReading();
-// }
-
-/**
  * @brief Read environment data from BME680
  *     Data is added to Cayenne LPP payload as channels
  *     LPP_CHANNEL_HUMID_2, LPP_CHANNEL_TEMP_2,

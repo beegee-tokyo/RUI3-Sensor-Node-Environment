@@ -80,12 +80,6 @@ void find_modules(void)
 				{
 					found_sensors[i].i2c_num = 1;
 					found_sensors[i].found_sensor = true;
-
-					if (address == 0x52)
-					{
-						found_sensors[i + 1].i2c_num = 1;
-						found_sensors[i + 1].found_sensor = true;
-					}
 					break;
 				}
 			}
@@ -106,12 +100,6 @@ void find_modules(void)
 	// 	}
 	// }
 
-	// // Check if RAK15001 is available
-	// if (init_rak15001())
-	// {
-	// 	// MYLOG("SCAN", "RAK15001 found");
-	// }
-	
 	// No devices found, no need to go through the initialization routines
 	if (num_dev == 0)
 	{
@@ -123,22 +111,6 @@ void find_modules(void)
 	}
 
 	// Initialize the modules found
-
-	// if (found_sensors[EEPROM_ID].found_sensor)
-	// {
-	// 	// Check EEPROM first, it occupies multiple I2C addresses
-	// 	if (!init_rak15000())
-	// 	{
-	// 		found_sensors[EEPROM_ID].found_sensor = false;
-	// 	}
-	// 	else
-	// 	{
-	// 		// 0x51, 0x52 and 0x53 are occupied by EEPROM
-	// 		found_sensors[MQ2_ID].found_sensor = false;
-	// 		found_sensors[RTC_ID].found_sensor = false;
-	// 		found_sensors[UVL_ID].found_sensor = false;
-	// 	}
-	// }
 
 	if (found_sensors[TEMP_ID].found_sensor)
 	{
@@ -168,38 +140,6 @@ void find_modules(void)
 		}
 	}
 
-	// if (found_sensors[ACC_ID].found_sensor)
-	// {
-	// 	if (!init_rak1904())
-	// 	{
-	// 		found_sensors[ACC_ID].found_sensor = false;
-	// 	}
-	// }
-
-	// if (found_sensors[GYRO_ID].found_sensor)
-	// {
-	// 	// if (!init_rak12025())
-	// 	{
-	// 		found_sensors[GYRO_ID].found_sensor = false;
-	// 		// if (!init_rak1905())
-	// 		// {
-	// 			// found_sensors[MPU_ID].found_sensor = false;
-	// 			if (!init_rak12040())
-	// 			{
-	// 				found_sensors[TEMP_ARR_ID].found_sensor = false;
-	// 			}
-	// 			else
-	// 			{
-	// 				found_sensors[TEMP_ARR_ID].found_sensor = true;
-	// 			}
-	// 		// }
-	// 		// else
-	// 		// {
-	// 		// 	found_sensors[MPU_ID].found_sensor = true;
-	// 		// }
-	// 	}
-	// }
-
 	if (found_sensors[ENV_ID].found_sensor)
 	{
 		if (init_rak1906())
@@ -211,18 +151,6 @@ void find_modules(void)
 			found_sensors[ENV_ID].found_sensor = false;
 		}
 	}
-
-	// if (found_sensors[OLED_ID].found_sensor)
-	// {
-	// 	if (init_rak1921())
-	// 	{
-	// 		rak1921_write_header((char *)"WisBlock Node");
-	// 	}
-	// 	else
-	// 	{
-	// 		found_sensors[OLED_ID].found_sensor = false;
-	// 	}
-	// }
 
 	if (found_sensors[RTC_ID].found_sensor)
 	{
@@ -236,14 +164,6 @@ void find_modules(void)
 		}
 	}
 
-	// if (found_sensors[FIR_ID].found_sensor)
-	// {
-	// 	if (!init_rak12003())
-	// 	{
-	// 		found_sensors[FIR_ID].found_sensor = false;
-	// 	}
-	// }
-
 	if (found_sensors[LIGHT2_ID].found_sensor)
 	{
 		if (init_rak12010())
@@ -255,43 +175,6 @@ void find_modules(void)
 			found_sensors[LIGHT2_ID].found_sensor = false;
 		}
 	}
-
-	// if (found_sensors[CO2_ID].found_sensor)
-	// {
-	// 	if (init_rak12037())
-	// 	{
-	// 		sprintf(g_dev_name, "RUI3 Environment Sensor");
-	// 	}
-	// 	else
-	// 	{
-	// 		found_sensors[CO2_ID].found_sensor = false;
-	// 	}
-	// }
-
-	// if (found_sensors[VOC_ID].found_sensor)
-	// {
-	// 	MYLOG("MOD", "init_rak12047");
-	// 	if (init_rak12047())
-	// 	{
-	// 		sprintf(g_dev_name, "RUI3 VOC Sensor");
-	// 	}
-	// 	else
-	// 	{
-	// 		found_sensors[VOC_ID].found_sensor = false;
-	// 	}
-	// }
-
-	// if (found_sensors[GNSS_ID].found_sensor)
-	// {
-	// 	if (init_gnss())
-	// 	{
-	// 		sprintf(g_dev_name, "RUI3 Location Tracker");
-	// 	}
-	// 	else
-	// 	{
-	// 		found_sensors[GNSS_ID].found_sensor = false;
-	// 	}
-	// }
 }
 
 /**
@@ -321,26 +204,9 @@ void announce_modules(void)
 		read_rak1903();
 	}
 
-	// if (found_sensors[ACC_ID].found_sensor)
-	// {
-	// 	Serial.println("+EVT:RAK1904");
-	// 	// Reading sensor data
-	// 	read_rak1904();
-	// }
-
-	// if (found_sensors[MPU_ID].found_sensor)
-	// {
-	// 	Serial.println("+EVT:RAK1905");
-	// 	// Reading sensor data
-	// 	read_rak1905();
-	// }
-
 	if (found_sensors[ENV_ID].found_sensor)
 	{
 		Serial.println("+EVT:RAK1906");
-		// // Start reading sensor data
-		// start_rak1906();
-		// delay(100);
 		// Reading sensor data
 		read_rak1906();
 	}
@@ -351,45 +217,12 @@ void announce_modules(void)
 		read_rak12002();
 	}
 
-	// if (found_sensors[FIR_ID].found_sensor)
-	// {
-	// 	Serial.println("+EVT:RAK12003");
-	// 	read_rak12003();
-	// }
-
 	if (found_sensors[LIGHT2_ID].found_sensor)
 	{
 		Serial.println("+EVT:RAK12010");
 		// Reading sensor data
 		read_rak12010();
 	}
-
-	// if (found_sensors[CO2_ID].found_sensor)
-	// {
-	// 	Serial.println("+EVT:RAK12037");
-	// 	// Reading sensor data
-	// 	read_rak12037();
-	// }
-
-	// if (found_sensors[TEMP_ARR_ID].found_sensor)
-	// {
-	// 	Serial.println("+EVT:RAK12040");
-	// 	read_rak12040();
-	// }
-
-	// if (found_sensors[VOC_ID].found_sensor)
-	// {
-	// 	Serial.println("+EVT:RAK12047");
-	// 	// Sensor needs 100 readings before valid data is available.
-	// 	// Makes no sense to read it already.
-	// }
-
-	// if (found_sensors[GNSS_ID].found_sensor)
-	// {
-	// 	MYLOG("MOD", "+EVT:RAK12500");
-	// 	// Sensor needs time to get location.
-	// 	// Makes no sense to read it already.
-	// }
 }
 
 /**
@@ -416,32 +249,11 @@ void get_sensor_values(void)
 		read_rak1903();
 	}
 
-	// if (found_sensors[ACC_ID].found_sensor)
-	// {
-	// 	// Read sensor data
-	// 	read_rak1904();
-	// }
-
-	// if (found_sensors[MPU_ID].found_sensor)
-	// {
-	// 	// Read sensor data
-	// 	read_rak1905();
-	// }
-
 	if (found_sensors[ENV_ID].found_sensor)
 	{
-		// // Start reading sensor data
-		// start_rak1906();
-		// delay(100);
 		// Reading sensor data
 		read_rak1906();
 	}
-
-	// if (found_sensors[FIR_ID].found_sensor)
-	// {
-	// 	// Read sensor data
-	// 	read_rak12003();
-	// }
 
 	if (found_sensors[LIGHT2_ID].found_sensor)
 	{
@@ -454,22 +266,4 @@ void get_sensor_values(void)
 		// Read sensor data
 		read_rak12002();
 	}
-
-	// if (found_sensors[CO2_ID].found_sensor)
-	// {
-	// 	// Read sensor data
-	// 	read_rak12037();
-	// }
-
-	// if (found_sensors[TEMP_ARR_ID].found_sensor)
-	// {
-	// 	// Get the temp array sensor values
-	// 	read_rak12040();
-	// }
-
-	// if (found_sensors[VOC_ID].found_sensor)
-	// {
-	// 	// Read sensor data
-	// 	read_rak12047();
-	// }
 }

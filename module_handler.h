@@ -112,54 +112,21 @@ void read_rak1902(void);
 uint16_t get_alt_rak1902(void);
 bool init_rak1903(void);
 void read_rak1903(void);
-bool init_rak1904(void);
-void read_rak1904(void);
-void int_assign_rak1904(uint8_t new_irq_pin);
-void clear_int_rak1904(void);
-bool init_rak1905(void);
-void read_rak1905(void);
-void clear_int_rak1905(void);
 bool init_rak1906(void);
 void start_rak1906(void);
 bool read_rak1906(void);
 uint16_t get_alt_rak1906(void);
-bool init_rak1921(void);
-void rak1921_add_line(char *line);
-void rak1921_show(void);
-void rak1921_write_header(char *header_line);
 bool init_rak12002(void);
 void set_rak12002(uint16_t year, uint8_t month, uint8_t date, uint8_t hour, uint8_t minute);
 void read_rak12002(void);
-bool init_rak12003(void);
-void read_rak12003(void);
 bool init_rak12010(void);
 void read_rak12010(void);
-bool init_rak12037(void);
-void read_rak12037(void);
-bool init_rak12040(void);
-void read_rak12040(void);
-bool init_rak12047(void);
-void read_rak12047(void);
-bool init_gnss(void);
-bool poll_gnss(void);
-bool init_rak15000(void);
-bool read_rak15000(uint16_t addr, uint8_t *buffer, uint16_t num);
-bool write_rak15000(uint16_t addr, uint8_t *buffer, uint16_t num);
-bool init_rak15001(void);
-bool read_rak15001(uint16_t address, uint8_t *buffer, uint16_t size);
-bool write_rak15001(uint16_t address, uint8_t *buffer, uint16_t size);
-bool read_config(void);
 
 // Custom AT commands
 bool init_rtc_at(void);
 bool get_at_setting(uint32_t setting_type);
 bool save_at_setting(uint32_t setting_type);
 bool init_frequency_at(void);
-
-// Sensor global definitions
-extern float mean_seal_level_press;
-extern time_t last_trigger;
-extern bool motion_detected;
 
 /** RTC date/time structure */
 struct date_time_s

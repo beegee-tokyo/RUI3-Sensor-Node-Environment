@@ -14,22 +14,6 @@
 int freq_send_handler(SERIAL_PORT port, char *cmd, stParam *param);
 int rtc_command_handler(SERIAL_PORT port, char *cmd, stParam *param);
 
-// // GNSS precision and data format definitions
-// /** GNSS 4 digit precision and standard Cayenne LPP format */
-// #define LPP_4_DIGIT 0
-// /** GNSS 6 digit precision and extended Cayenne LPP format */
-// #define LPP_6_DIGIT 1
-// /** Helium Mapper format */
-// #define HELIUM_MAPPER 2
-
-// /**
-//  * @brief GNSS format and precision
-//  * 0 = 4 digit standard Cayenne LPP format
-//  * 1 = 6 digit extended Cayenne LPP format
-//  * 2 = Helium Mapper data format
-//  */
-// uint8_t gnss_format = 0;
-
 /**
  * @brief Add send-frequency AT command
  *
